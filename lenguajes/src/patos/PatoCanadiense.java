@@ -9,6 +9,11 @@ package patos;
  *
  * @author T-102
  */
-public class PatoCanadiense {
+public class PatoCanadiense extends Pato implements ComportamientoVolar {
     public static final String color="cafe";
+    public void volar(){
+        System.out.println("Soy pato Canadiense y vulero");
+    }
+    
+    
 }

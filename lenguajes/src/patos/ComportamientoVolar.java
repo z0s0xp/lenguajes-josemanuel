@@ -9,12 +9,6 @@ package patos;
  *
  * @author T-102
  */
-public class PatoMexicano extends Pato implements ComportamientoVolar {
-    public static final String color="Blanco";
-
-   
-    public void volar() {
-        System.out.println("Soy pato Mexicano y no vuelo");
-    }
-    
+public interface ComportamientoVolar {
+   public void volar();
 }
