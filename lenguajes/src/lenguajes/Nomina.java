@@ -10,6 +10,6 @@ package lenguajes;
  * @author z0s0xp
  */
 public class Nomina {
-    Trabajador worker
+    Trabajador worker;
     
 }
