@@ -46,10 +46,10 @@ public class ApUsuario extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        textoNombreBuscar = new javax.swing.JTextField();
+        buscarPorNombre = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaUsuarios = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -183,15 +183,20 @@ public class ApUsuario extends javax.swing.JFrame {
 
         jLabel6.setText("Introduce el nombre a buscar");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        textoNombreBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                textoNombreBuscarActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Buscar");
+        buscarPorNombre.setText("Buscar");
+        buscarPorNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarPorNombreActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -201,7 +206,7 @@ public class ApUsuario extends javax.swing.JFrame {
                 "Nombre", "Email", "Edad"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaUsuarios);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -211,10 +216,10 @@ public class ApUsuario extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textoNombreBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jButton2)
+                .addComponent(buscarPorNombre)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 284, Short.MAX_VALUE))
@@ -225,10 +230,10 @@ public class ApUsuario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textoNombreBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
+                    .addComponent(buscarPorNombre)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(148, Short.MAX_VALUE))
         );
@@ -302,9 +307,30 @@ public class ApUsuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void textoNombreBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoNombreBuscarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_textoNombreBuscarActionPerformed
+
+    private void buscarPorNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarPorNombreActionPerformed
+        // TODO add your handling code here:
+        try {
+            PersistenciaUsuario p=new PersistenciaUsuario();
+        Usuario encontrado=p.buscarPorNombre(textoNombreBuscar.getText());
+        tablaUsuarios.setValueAt(encontrado.getNombre(), 0,0);
+        tablaUsuarios.setValueAt(encontrado.getEmail(), 0,1);
+        tablaUsuarios.setValueAt(encontrado.getEdad(), 0,2);
+        } catch (NullPointerException e) {
+            Object[] opciones={"Ni modo!!"};
+            int n= JOptionPane.showOptionDialog(this,"Usuario no encontrado","NADA",JOptionPane.PLAIN_MESSAGE,JOptionPane.QUESTION_MESSAGE
+                    ,null,opciones,opciones[0]);
+        }catch(Exception e){
+                 JOptionPane.showConfirmDialog(this, e.getMessage());
+        }
+                
+        
+        
+        
+    }//GEN-LAST:event_buscarPorNombreActionPerformed
 
     /**
      * @param args the command line arguments
@@ -342,8 +368,8 @@ public class ApUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buscarPorNombre;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -358,10 +384,10 @@ public class ApUsuario extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tablaUsuarios;
     private javax.swing.JTextField textoEdad;
     private javax.swing.JTextField textoEmail;
     private javax.swing.JTextField textoNombre;
+    private javax.swing.JTextField textoNombreBuscar;
     // End of variables declaration//GEN-END:variables
 }
