@@ -16,10 +16,7 @@ public class Alumno extends Persona{
         super(cod, apnom, dni);
         this.Promedio = Promedio;
     }
-    public Promedio(){
-        
-        return(this.);
-    } 
+
     
         
 }
